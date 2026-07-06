@@ -134,7 +134,7 @@ src/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/zestora.git
+   git clone https://github.com/SandyPonnusamy/zestora.git
    cd zestora
    ```
 
