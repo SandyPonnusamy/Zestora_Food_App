@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zestora — Create your account</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2B1B17;
+    --paper:#FFF7EC;
+    --card:#FFFFFF;
+    --chili:#FF4D3D;
+    --chili-dark:#E0331F;
+    --gold:#FFB627;
+    --teal:#1B998B;
+    --line: rgba(43,27,23,0.10);
+    --muted: rgba(43,27,23,0.6);
+    --shadow: 0 14px 30px rgba(43,27,23,0.10);
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a{ color:inherit; text-decoration:none; }
+  ul{ margin:0; padding:0; list-style:none; }
+  a:focus-visible, label:focus-visible, input:focus-visible, select:focus-visible, button:focus-visible{
+    outline: 3px solid var(--chili-dark);
+    outline-offset: 2px;
+  }
+
+  /* ================= NAVBAR ================= */
+  .navbar{
+    position: sticky;
+    top:0;
+    z-index: 100;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 16px 40px;
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .logo{
+    font-family:'Archivo Black', sans-serif;
+    font-size: 1.55rem;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .logo .dot{ color: var(--gold); }
+  .nav-links{
+    display:flex;
+    align-items:center;
+    gap: 30px;
+  }
+  .nav-links a{
+    font-weight:600;
+    font-size: 0.95rem;
+    opacity:0.92;
+    position:relative;
+    padding: 6px 2px;
+  }
+  .nav-links a::after{
+    content:"";
+    position:absolute;
+    left:0; bottom:-3px;
+    width:0%; height:2px;
+    background: var(--gold);
+    transition: width .2s ease;
+  }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-cta{
+    background: var(--chili);
+    color: #fff !important;
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-weight:700;
+    font-size: 0.9rem;
+    box-shadow: 0 6px 16px rgba(255,77,61,0.35);
+  }
+  .nav-cta:hover{ background: var(--chili-dark); }
+
+  /* ================= SIGNUP HERO STRIP ================= */
+  .signup-hero{
+    position:relative;
+    background: linear-gradient(135deg, var(--ink) 0%, #45291f 60%, var(--chili-dark) 130%);
+    color: var(--paper);
+    padding: 48px 40px 42px;
+    overflow:hidden;
+    text-align:center;
+  }
+  .signup-hero::before{
+    content:"";
+    position:absolute;
+    top:-60px; left:-60px;
+    width:280px; height:280px;
+    background: radial-gradient(circle, rgba(255,182,39,0.3), transparent 70%);
+  }
+  .signup-hero-inner{
+    position:relative;
+    z-index:2;
+  }
+  .signup-hero h1{
+    font-family:'Archivo Black', sans-serif;
+    font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+    margin: 0 0 10px;
+  }
+  .signup-hero h1 em{ font-style:normal; color: var(--gold); }
+  .signup-hero p{
+    font-size: 0.96rem;
+    opacity:0.85;
+    margin:0;
+  }
+
+  /* ================= MAIN ================= */
+  main{
+    max-width: 540px;
+    margin: 0 auto;
+    padding: 40px 20px 90px;
+  }
+
+  .form-card{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    padding: 36px 36px 32px;
+  }
+  .form-card-head{
+    text-align:center;
+    margin-bottom: 26px;
+  }
+  .form-card-head h2{
+    font-family:'Archivo Black', sans-serif;
+    font-size: 1.3rem;
+    margin: 0 0 6px;
+  }
+  .form-card-head p{
+    font-size: 0.86rem;
+    color: var(--muted);
+    margin:0;
+  }
+
+  .field-group{
+    margin-bottom: 20px;
+  }
+  .field-group label{
+    display:block;
+    font-size: 0.82rem;
+    font-weight:700;
+    color: var(--ink);
+    margin-bottom: 7px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .input-wrap{
+    position:relative;
+    display:flex;
+    align-items:center;
+  }
+  .input-wrap svg{
+    position:absolute;
+    left: 14px;
+    width: 17px;
+    height: 17px;
+    color: var(--chili);
+    flex-shrink:0;
+  }
+  .input-wrap input,
+  .input-wrap select{
+    width:100%;
+    padding: 12px 14px 12px 40px;
+    border: 1.5px solid var(--line);
+    border-radius: 10px;
+    font-family:'Inter', sans-serif;
+    font-size: 0.92rem;
+    color: var(--ink);
+    background: var(--paper);
+    transition: border-color .15s ease, box-shadow .15s ease;
+  }
+  .input-wrap textarea{
+    width:100%;
+    padding: 12px 14px 12px 40px;
+    border: 1.5px solid var(--line);
+    border-radius: 10px;
+    font-family:'Inter', sans-serif;
+    font-size: 0.92rem;
+    color: var(--ink);
+    background: var(--paper);
+    resize: vertical;
+    min-height: 70px;
+  }
+  .input-wrap select{
+    appearance:none;
+    cursor:pointer;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%232B1B17" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 38px;
+  }
+  .input-wrap input:focus,
+  .input-wrap select:focus,
+  .input-wrap textarea:focus{
+    border-color: var(--chili);
+    box-shadow: 0 0 0 3px rgba(255,77,61,0.12);
+    outline:none;
+  }
+  .input-wrap input::placeholder{ color: rgba(43,27,23,0.4); }
+
+  .hint{
+    font-size: 0.74rem;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  .submit-btn{
+    width:100%;
+    border:none;
+    background: var(--chili);
+    color:#fff;
+    font-weight:800;
+    font-size: 0.96rem;
+    padding: 14px 0;
+    border-radius: 999px;
+    cursor:pointer;
+    margin-top: 8px;
+    box-shadow: 0 8px 18px rgba(255,77,61,0.3);
+    transition: background .15s ease, transform .15s ease;
+  }
+  .submit-btn:hover{ background: var(--chili-dark); transform: translateY(-1px); }
+
+  .divider{
+    display:flex;
+    align-items:center;
+    gap: 12px;
+    margin: 24px 0 18px;
+  }
+  .divider::before,
+  .divider::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background: var(--line);
+  }
+  .divider span{
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-weight:600;
+  }
+
+  .login-redirect{
+    text-align:center;
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+  .login-redirect a{
+    color: var(--chili);
+    font-weight:700;
+  }
+  .login-redirect a:hover{ color: var(--chili-dark); text-decoration:underline; }
+
+  /* role pills (visual touch, role still submits via select) */
+  .role-note{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background: rgba(27,153,139,0.08);
+    border: 1px solid rgba(27,153,139,0.25);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 0.78rem;
+    color: var(--teal);
+    font-weight:600;
+    margin-top: 10px;
+  }
+  .role-note svg{ width:16px; height:16px; flex-shrink:0; }
+
+  /* ================= FOOTER ================= */
+  footer{
+    background: var(--ink);
+    color: rgba(255,247,236,0.6);
+    padding: 24px 40px;
+    text-align:center;
+    font-size: 0.8rem;
+  }
+
+  /* ================= RESPONSIVE ================= */
+  @media (max-width: 600px){
+    .navbar{ padding: 14px 20px; }
+    .signup-hero{ padding: 38px 20px 34px; }
+    main{ padding: 30px 16px 70px; }
+    .form-card{ padding: 28px 22px 26px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="#" class="logo">Zest<span class="dot">ora</span></a>
+  <ul class="nav-links">
+    <li><a href="callRestaurantServlet">Home</a></li>
+    <li><a href="login.jsp" class="nav-cta">Login</a></li>
+  </ul>
+</nav>
+
+<header class="signup-hero">
+  <div class="signup-hero-inner">
+    <h1>Join <em>Zestora</em> today</h1>
+    <p>Create your account and start ordering from the best kitchens near you.</p>
+  </div>
+</header>
+
+<main>
+  <div class="form-card">
+    <div class="form-card-head">
+      <h2>Create your account</h2>
+      <p>It only takes a minute to get started.</p>
+    </div>
+
+    <form action="callRegisterServlet" method="post">
+
+      <div class="field-group">
+        <label for="username">Full name</label>
+        <div class="input-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+          <input type="text" id="username" name="username" placeholder="e.g. Harsha Vardhan" required>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label for="email">Email address</label>
+        <div class="input-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label for="password">Password</label>
+        <div class="input-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 1 1 8 0v3"/></svg>
+          <input type="password" id="password" name="password" placeholder="Create a strong password" required minlength="6">
+        </div>
+        <div class="hint">Minimum 6 characters.</div>
+      </div>
+
+      <div class="field-group">
+        <label for="address">Delivery address</label>
+        <div class="input-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-7.2-7-12a7 7 0 1 1 14 0c0 4.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          <textarea id="address" name="address" placeholder="House no., street, area, city" required></textarea>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label for="role">Register as</label>
+        <div class="input-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg>
+          <select id="role" name="role" required>
+            <option value="" disabled selected>Select your role</option>
+            <option value="USER">Customer — Order food</option>
+            <option value="DELIVERY_AGENT">Delivery Agent — Deliver orders</option>
+            <option value="RESTAURANT_ADMIN">Restaurant Admin — List my restaurant</option>
+          </select>
+        </div>
+        <div class="role-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+          Delivery Agents deliver orders and earn per delivery. Restaurant Admins list their restaurants.
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">Create account</button>
+
+      <div class="divider"><span>OR</span></div>
+
+      <p class="login-redirect">Already have an account? <a href="login.jsp">Log in</a></p>
+
+    </form>
+  </div>
+</main>
+
+<footer>
+  © 2026 Zestora. UI concept for a food delivery app.
+</footer>
+
+</body>
+</html>
